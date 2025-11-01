@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 DialogueManager="*res://addons/dialogue_manager/dialogue_manager.gd"
+Global_Var="*res://Autoloads/Global_Var.gd"
 
 [dialogue_manager]
 
@@ -75,7 +76,14 @@ Skip_dialogue={
 
 locale/translations_pot_files=PackedStringArray("res://Dialogue/Dialogue_narrator.dialogue")
 
+[layer_names]
+
+2d_physics/layer_1="Obstacles"
+2d_physics/layer_5="Interaction"
+2d_physics/layer_7="Start_scene"
+
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"

@@ -1,7 +1,16 @@
-[gd_scene load_steps=3 format=3 uid="uid://dwv8xxf61ej4c"]
+[gd_scene load_steps=4 format=3 uid="uid://dwv8xxf61ej4c"]
 
 [ext_resource type="Theme" uid="uid://by8eol2aee8xi" path="res://Assets/Theme/Theme_menu.tres" id="1_okew3"]
 [ext_resource type="Script" path="res://Menu/menu.gd" id="2_vmcuw"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_jc2so"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 1
+border_color = Color(0, 0, 0, 1)
+corner_detail = 1
 
 [node name="Menu" type="Control"]
 layout_mode = 3
@@ -31,6 +40,7 @@ layout_mode = 2
 [node name="TextureRect" type="TextureRect" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_stretch_ratio = 1.5
 
 [node name="Vbox" type="VBoxContainer" parent="MarginContainer/HBoxContainer"]
 layout_mode = 2
@@ -43,23 +53,44 @@ layout_mode = 2
 
 [node name="Label" type="Label" parent="MarginContainer/HBoxContainer/Vbox/Container_title"]
 layout_mode = 2
-text = "TITULO DEL"
+text = "THE"
 
 [node name="Label2" type="Label" parent="MarginContainer/HBoxContainer/Vbox/Container_title"]
 layout_mode = 2
-text = "JUEGO"
+theme_override_constants/shadow_offset_x = 2
+theme_override_constants/shadow_offset_y = 2
+theme_override_constants/outline_size = 0
+text = "THIEF"
 
-[node name="Container_but" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Vbox"]
+[node name="PanelContainer" type="PanelContainer" parent="MarginContainer/HBoxContainer/Vbox"]
 layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_jc2so")
 
-[node name="But_play" type="Button" parent="MarginContainer/HBoxContainer/Vbox/Container_but"]
+[node name="MarginContainer" type="MarginContainer" parent="MarginContainer/HBoxContainer/Vbox/PanelContainer"]
 layout_mode = 2
+theme_override_constants/margin_top = 0
+theme_override_constants/margin_right = 0
+theme_override_constants/margin_bottom = 0
+
+[node name="Container_but" type="VBoxContainer" parent="MarginContainer/HBoxContainer/Vbox/PanelContainer/MarginContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="But_play" type="Button" parent="MarginContainer/HBoxContainer/Vbox/PanelContainer/MarginContainer/Container_but"]
+layout_mode = 2
+toggle_mode = true
 text = "PLAY"
 
-[node name="But_settings" type="Button" parent="MarginContainer/HBoxContainer/Vbox/Container_but"]
+[node name="But_settings" type="Button" parent="MarginContainer/HBoxContainer/Vbox/PanelContainer/MarginContainer/Container_but"]
 layout_mode = 2
+toggle_mode = true
 text = "SETTINGS"
 
-[node name="But_exit" type="Button" parent="MarginContainer/HBoxContainer/Vbox/Container_but"]
+[node name="But_exit" type="Button" parent="MarginContainer/HBoxContainer/Vbox/PanelContainer/MarginContainer/Container_but"]
 layout_mode = 2
+toggle_mode = true
 text = "EXIT"
+
+[connection signal="toggled" from="MarginContainer/HBoxContainer/Vbox/PanelContainer/MarginContainer/Container_but/But_play" to="." method="_on_but_play_toggled"]
+[connection signal="toggled" from="MarginContainer/HBoxContainer/Vbox/PanelContainer/MarginContainer/Container_but/But_settings" to="." method="_on_but_settings_toggled"]
+[connection signal="toggled" from="MarginContainer/HBoxContainer/Vbox/PanelContainer/MarginContainer/Container_but/But_exit" to="." method="_on_but_exit_toggled"]
